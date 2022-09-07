@@ -1,0 +1,31 @@
+package com.example.address.controller;
+
+import com.example.address.request.CreateAddressRequest;
+import com.example.address.responce.CreateAddressResponce;
+import com.example.address.service.AddressService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/address/api")
+public class AddressController {
+
+    @Autowired
+    private AddressService addressService;
+
+    @PostMapping("/create")
+    public CreateAddressResponce createAddress(@RequestBody CreateAddressRequest createAddressRequest){
+        return addressService.createAddress(createAddressRequest);
+
+    }
+
+    @GetMapping("/getById/{id}")
+    public CreateAddressResponce getById(@PathVariable Long id){
+        return addressService.getById(id);
+    }
+}
